@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import GoogleButton from "react-google-button";
 import { useUserAuth } from "../context/UserAuthContext";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -17,7 +19,7 @@ const Login = () => {
     setError("");
     try {
       await logIn(email, password);
-      navigate("/home");
+      navigate("/dashboard");
     } catch (err) {
       setError(err.message);
     }
@@ -27,7 +29,7 @@ const Login = () => {
     e.preventDefault();
     try {
       await googleSignIn();
-      navigate("/home");
+      navigate("/dashboard");
     } catch (error) {
       console.log(error.message);
     }
@@ -35,7 +37,11 @@ const Login = () => {
 
   return (
     <>
-      <div className="p-4 box">
+    <div className="log-sign-body">
+    <Container style={{ width: "400px" }}>
+    <Row>
+        <Col>
+      <div className="box">
         <h2 className="mb-3">Login</h2>
         {error && <Alert variant="danger">{error}</Alert>}
         <Form onSubmit={handleSubmit}>
@@ -55,8 +61,8 @@ const Login = () => {
             />
           </Form.Group>
 
-          <div className="d-grid gap-2">
-            <Button variant="primary" type="Submit">
+          <div className="d-grid gap-2 ">
+            <Button className="log-sign-btn" variant="primary" type="Submit">
               Log In
             </Button>
           </div>
@@ -72,6 +78,10 @@ const Login = () => {
       </div>
       <div className="p-4 box mt-3 text-center">
         Don't have an account? <Link to="/signup">Sign up</Link>
+      </div>
+      </Col>
+      </Row>
+      </Container>
       </div>
     </>
   );
