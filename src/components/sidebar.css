@@ -37,8 +37,11 @@ background-color: #2F4050;
     cursor: pointer;
     background-color: #293846;
 }
-.Sidebar-List .Sidebar-Row #active{
-    background-color: #293846;
+/* .Sidebar-List .Sidebar-Row #active{
+    background-color: #9ac5ee;
+} */
+#active{
+    background-color: #6492c0;
 }
 
 

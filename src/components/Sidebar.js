@@ -84,7 +84,7 @@ export const Sidebar = () => {
         {sidebarData.map((val,i)=>{
           return(
             <li key={i}
-            id={window.location.pathname == val.link ? "active" : ""}
+            id={window.location.pathname === val.link ? "active" : ""}
             className="Sidebar-Row" onClick={()=>
             navigate(val.link)} >
               <div id='sidebar-icon'>{val.icon}</div>  
