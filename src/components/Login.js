@@ -49,6 +49,7 @@ const Login = () => {
             <Form.Control
               type="email"
               placeholder="Email address"
+              required
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
@@ -57,6 +58,7 @@ const Login = () => {
             <Form.Control
               type="password"
               placeholder="Password"
+              required
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>

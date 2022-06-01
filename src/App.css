@@ -6,6 +6,9 @@
     width: 100%;
     align-items: center;
     height: 100vh;
+
+    background: url(background.jpg);
+    background-size: cover;
 }
 
 .log-sign-btn{
@@ -13,9 +16,11 @@
 }
 
 .box {
-    border: 1px solid #dfdfdf;
-    background-color: #fff;
-    padding:1.5rem!important
+    /* border: 1px solid #dfdfdf; */
+    /* background-color: #fff; */
+    background-color: rgb(92,93,97);
+    padding:1.5rem!important;
+    color: white;
 }
 
 .g-btn {

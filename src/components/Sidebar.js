@@ -25,7 +25,7 @@ export const Sidebar = () => {
   const handleLogout = async () => {
     try {
       await logOut();
-      navigate("/company-website/");
+      navigate("/");
     } catch (error) {
       console.log(error.message);
     }
@@ -38,42 +38,50 @@ export const Sidebar = () => {
     {
       title:"Dashboard",
       icon:<HomeIcon/>,
-      link:"/dashboard"
+      link:"/dashboard",
+      forColor:"/company-website/dashboard"
     },
     {
       title:"Blog",
       icon:<RssFeedIcon/>,
-      link:"/blog"
+      link:"/blog",
+      forColor:"/company-website/blog"
     },
     {
       title:"Courses",
       icon:<MenuBookIcon/>,
-      link:"/course"
+      link:"/course",
+      forColor:"/company-website/course"
     },
     {
       title:"Projects",
       icon:<LaptopChromebookIcon/>,
-      link:"/projects"
+      link:"/projects",
+      forColor:"/company-website/projects"
     },
     {
       title:"Reports",
       icon:<PieChartIcon/>,
-      link:"/report"
+      link:"/report",
+      forColor:"/company-website/report"
     },
     {
       title:"Payments",
       icon:<ContactlessIcon/>,
-      link:"/payment"
+      link:"/payment",
+      forColor:"/company-website/payment"
     },
     {
       title:"Activities",
       icon:<GroupIcon/>,
-      link:"/activities"
+      link:"/activities",
+      forColor:"/company-website/activities"
     },
     {
       title:"Settings",
       icon:<SettingsIcon/>,
-      link:"/settings"
+      link:"/settings",
+      forColor:"/company-website/settings"
     },
   ]
 
@@ -84,7 +92,7 @@ export const Sidebar = () => {
         {sidebarData.map((val,i)=>{
           return(
             <li key={i}
-            id={window.location.pathname === val.link ? "active" : ""}
+            id={window.location.pathname === val.forColor ? "active" : ""}
             className="Sidebar-Row" onClick={()=>
             navigate(val.link)} >
               <div id='sidebar-icon'>{val.icon}</div>  

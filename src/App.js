@@ -23,7 +23,7 @@ function App() {
       <div>
           <UserAuthContextProvider>
             <Routes>
-            <Route path="/company-website/" element={<Login />} />
+            <Route path="/" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route
                 path="/dashboard"
