@@ -2,3 +2,10 @@
     display: flex;
     flex-direction: row;
 }
+.side-boxes{
+    width: 100%;
+}
+.top-box-img{
+width: 100%;
+height: 235px;
+}

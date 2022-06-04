@@ -2,7 +2,8 @@
   "name": "company-website",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Shubhamkalamkar.github.io/company-website",
+  "homepage": "https://digitalguruindia.in",
+
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",

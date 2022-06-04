@@ -1,0 +1,46 @@
+.header-container{
+    height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(67, 63, 72);
+    position: fixed;
+}
+
+.header-names{
+    font-size: 2rem;
+    color: white;
+}
+
+.header-button{
+    background-color: rgb(47,64,80);
+    border: none;
+    color: white;
+
+}
+.header-button:hover{
+    cursor: pointer;
+    color: blueviolet;
+}
+
+@media only screen and (max-width: 1000px){
+    .header-names{
+        font-size: 1.5rem;
+    }
+}
+@media only screen and (max-width: 850px){
+    .header-names{
+        font-size: 1.3rem;
+    }
+}
+@media only screen and (max-width: 600px){
+    .header-names{
+        font-size: 1rem;
+    }
+}
+@media only screen and (max-width: 450px){
+    .header-names{
+        font-size: 0.7rem;
+    }
+}

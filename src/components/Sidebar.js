@@ -38,50 +38,42 @@ export const Sidebar = () => {
     {
       title:"Dashboard",
       icon:<HomeIcon/>,
-      link:"/dashboard",
-      forColor:"/company-website/dashboard"
+      link:"/dashboard"
     },
     {
       title:"Blog",
       icon:<RssFeedIcon/>,
-      link:"/blog",
-      forColor:"/company-website/blog"
+      link:"/blog"
     },
     {
       title:"Courses",
       icon:<MenuBookIcon/>,
-      link:"/course",
-      forColor:"/company-website/course"
+      link:"/course"
     },
     {
       title:"Projects",
       icon:<LaptopChromebookIcon/>,
-      link:"/projects",
-      forColor:"/company-website/projects"
+      link:"/projects"
     },
     {
       title:"Reports",
       icon:<PieChartIcon/>,
-      link:"/report",
-      forColor:"/company-website/report"
+      link:"/report"
     },
     {
       title:"Payments",
       icon:<ContactlessIcon/>,
-      link:"/payment",
-      forColor:"/company-website/payment"
+      link:"/payment"
     },
     {
       title:"Activities",
       icon:<GroupIcon/>,
-      link:"/activities",
-      forColor:"/company-website/activities"
+      link:"/activities"
     },
     {
       title:"Settings",
       icon:<SettingsIcon/>,
-      link:"/settings",
-      forColor:"/company-website/settings"
+      link:"/settings"
     },
   ]
 
@@ -92,7 +84,7 @@ export const Sidebar = () => {
         {sidebarData.map((val,i)=>{
           return(
             <li key={i}
-            id={window.location.pathname === val.forColor ? "active" : ""}
+            id={window.location.pathname === val.link ? "active" : ""}
             className="Sidebar-Row" onClick={()=>
             navigate(val.link)} >
               <div id='sidebar-icon'>{val.icon}</div>  
@@ -102,7 +94,7 @@ export const Sidebar = () => {
         })}
         </ul>
 
-        <div className="p-4 box mt-3 text-center">
+        {/* <div className="p-4 box mt-3 text-center">
         Hello Welcome <br />
         {user && user.email}
       </div>
@@ -110,7 +102,7 @@ export const Sidebar = () => {
         <Button variant="primary" onClick={handleLogout}>
           Log out
         </Button>
-      </div>
+      </div> */}
 
 
       </div>
