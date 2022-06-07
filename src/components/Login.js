@@ -41,8 +41,9 @@ const Login = () => {
     <Container style={{ width: "400px" }}>
     <Row>
         <Col>
+        <img className="login-logo" src={require("./logo.jpeg")} alt="logo" />
       <div className="box">
-        <h2 className="mb-3">Login</h2>
+        <h2 className="mb-3 login-name">Login</h2>
         {error && <Alert variant="danger">{error}</Alert>}
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -70,13 +71,13 @@ const Login = () => {
           </div>
         </Form>
         <hr />
-        <div>
+        {/* <div>
           <GoogleButton
             className="g-btn"
             type="dark"
             onClick={handleGoogleSignIn}
           />
-        </div>
+        </div> */}
       </div>
       <div className="p-4 box mt-3 text-center">
         Don't have an account? <Link to="/signup">Sign up</Link>

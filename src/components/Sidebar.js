@@ -8,6 +8,7 @@ import PieChartIcon from '@mui/icons-material/PieChart';
 import ContactlessIcon from '@mui/icons-material/Contactless';
 import GroupIcon from '@mui/icons-material/Group';
 import SettingsIcon from '@mui/icons-material/Settings';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
 
 // from home
@@ -43,12 +44,12 @@ export const Sidebar = () => {
     {
       title:"Blog",
       icon:<RssFeedIcon/>,
-      link:"/blog"
+      link:""
     },
     {
       title:"Courses",
       icon:<MenuBookIcon/>,
-      link:"/course"
+      link:""
     },
     {
       title:"Projects",
@@ -58,22 +59,22 @@ export const Sidebar = () => {
     {
       title:"Reports",
       icon:<PieChartIcon/>,
-      link:"/report"
+      link:""
     },
     {
       title:"Payments",
       icon:<ContactlessIcon/>,
-      link:"/payment"
+      link:""
     },
     {
       title:"Activities",
       icon:<GroupIcon/>,
-      link:"/activities"
+      link:""
     },
     {
       title:"Settings",
       icon:<SettingsIcon/>,
-      link:"/settings"
+      link:""
     },
   ]
 
@@ -97,12 +98,13 @@ export const Sidebar = () => {
         {/* <div className="p-4 box mt-3 text-center">
         Hello Welcome <br />
         {user && user.email}
-      </div>
-      <div className="d-grid gap-2">
+      </div> */}
+      <div className='sidebar-logout-button'>
         <Button variant="primary" onClick={handleLogout}>
           Log out
         </Button>
-      </div> */}
+      </div>
+      <div className='logout-icon' onClick={handleLogout}><LogoutIcon/></div>
 
 
       </div>

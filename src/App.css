@@ -11,6 +11,10 @@
     background-size: cover;
 }
 
+.login-name{
+    text-align: center;
+}
+
 .log-sign-btn{
     width: 100%;
 }
@@ -22,6 +26,16 @@
     padding:1.5rem!important;
     color: white;
     border-radius: 20px;
+    text-align: center;
+}
+.col{
+    text-align: center;
+}
+.login-logo {
+    width: 110px;
+    border-radius: 50%;
+    height: 110px;
+    margin-bottom: 18px;
 }
 
 .g-btn {

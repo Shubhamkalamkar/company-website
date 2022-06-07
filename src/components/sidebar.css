@@ -1,7 +1,7 @@
 .sidebar-container{
     /* width: 100vw; */
-    height: 100vh;
-    margin-top: 60px;
+    height: 100%;
+    margin-top: 90px;
     position: fixed;
     
 }
@@ -12,7 +12,7 @@ ul {
 .sidebar{
 height: 100%;
 width: 250px;
-background-color: #2F4050;
+background-color: #4238CB ;
 }
 
 .side-boxes{
@@ -34,14 +34,14 @@ background-color: #2F4050;
     margin: 0;
     display: flex;
     flex-direction: row;
-    color: white;
+    color: #C5C3E5;
     justify-content: center;
     align-items: center;
 }
 
 .Sidebar-List .Sidebar-Row:hover{
     cursor: pointer;
-    background-color: #293846;
+    background-color: #4f6273;
 }
 /* .Sidebar-List .Sidebar-Row #active{
     background-color: #9ac5ee;
@@ -62,9 +62,19 @@ background-color: #2F4050;
     flex: 70%;
 }
 
+.sidebar-logout-button{
+    margin-left: 70px;
+}
+.logout-icon{
+    display: none;
+}
+
 @media only screen and (max-width: 700px){
     .sidebar{
         width: 180px;
+    }
+    .sidebar-logout-button{
+        margin-left: 40px;
     }
 }
 
@@ -75,4 +85,13 @@ background-color: #2F4050;
     .sidebar{
         width: 60px;
     }
+    .sidebar-logout-button{
+        display: none;
+    }
+    .logout-icon{
+        display: block;
+        color: white;
+        margin-left: 19px;
+    }
+    
   }

@@ -8,6 +8,7 @@ import { async } from "@firebase/util";
 
 import { db } from '../firebase';
 import { collection, getDocs, addDoc } from 'firebase/firestore';
+import { updateProfile } from "firebase/auth";
 
 const Signup = () => {
   const [Intern, setIntern] = useState();
@@ -30,10 +31,10 @@ const Signup = () => {
 
     const getUsers = async () => {
       const data = await getDocs(usersCollectionRef);
-      // console.log(data);
+      console.log(data);
 
       setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-      // console.log(users);
+      console.log(users);
 
     };
 
@@ -59,13 +60,20 @@ const Signup = () => {
 
     if (b == true) {
       try {
-        await signUp(email, password);
+        await signUp(email, password).then(async(res)=>{
+          const user = res.user;
+          console.log(user);
+          await updateProfile(user, {
+            displayName:name,
+          });
+        })
         await addDoc(signupCollectionRef, {internId:Intern,
            name:name,
             mobileNumber:mobile,
             emailid:email,
             password:password
           })
+          
         navigate("/");
       } catch (err) {
         setError(err.message);
@@ -121,12 +129,15 @@ const Signup = () => {
         <Container style={{ width: "400px" }}>
           <Row>
             <Col>
+            <img className="login-logo" src={require("./logo.jpeg")} alt="logo" />
+
               <div className="p-4 box">
 
 
                 {/* {users.map((user)=>{
-          return <div>{usersId.push(user.intern_id)}</div>
+          return <div>{user.intern_id}</div>
         })} */}
+       
 
 
                 <h2 className="mb-3">Signup</h2>
