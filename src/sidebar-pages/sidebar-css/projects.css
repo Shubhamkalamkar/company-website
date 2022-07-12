@@ -1,16 +1,56 @@
 .project-container{
     width: 100%;
+    height: 100vh;
     margin-top: 92px;
+    background-color: #fbf8f5;
 }
 
 .task-container{
-    background: url(../top-box.jpeg);
-    background-size: cover;
-    margin-bottom: 5px;
-    margin-left: 252px;
-    height: 160px;
+    background:white;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-left: 255px;
+    /* height: 160px; */
     text-align: center;
+    background: palegreen;
+    color: darkblue;
+    /* border: 1px solid green; */
+    padding: 10px;
 }
+.project-tags{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.project-tags-p{
+    background-color: honeydew;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.submit-link input{
+    width: 50%;
+    padding: 6px;
+    border: 1px solid deepskyblue;
+    border-radius: 5px;
+}
+
+.submit-link button{
+    color: white;
+    background: green;
+    border-radius: 5px;
+    padding-bottom: 4px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.submit-link button:hover{
+    background-color: wheat;
+    border: none;
+    color: black;
+}
+
 
 
 @media only screen and (max-width: 700px){

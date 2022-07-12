@@ -9,7 +9,7 @@ export const Dashboard = () => {
   const [userName, setUserName] = useState("");
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      // console.log(user);
+      console.log(user);
       if (user) {
         setUserName(user.displayName);
       } else {

@@ -43,7 +43,7 @@ export const Header = () => {
       <div>
         {" "}
         <img className="help-logo" src={require("./help.jpg")} alt="logo" />
-        <p style={{textAlign: "center"}}>Help</p>
+        <p className="help-name" style={{textAlign: "center"}}>Help</p>
       </div>
       <div>
       <img className="certificate-logo" src={require("./certificate.png")} alt="logo" />
@@ -66,8 +66,10 @@ export const Header = () => {
           <div className="menutoggle" onClick={toggle}>
             <ul className="menu">
               <li>Profile</li>
+              <li className="header-certificate">Certificate</li>
+              <li className="header-help">Help</li>
               <li>Settings</li>
-              <li>Logout</li>
+              <li onClick={handleLogout}>Logout</li>
             </ul>
           </div>
         </div>

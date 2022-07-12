@@ -18,7 +18,8 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [InternError, setInternError] = useState(false);
-  
+  const [value, setValue] = useState("");
+
   const usersId = [];
   const { signUp } = useUserAuth();
 
@@ -41,6 +42,9 @@ const Signup = () => {
     getUsers();
   }, [])
 
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  };
 
   let navigate = useNavigate();
 
@@ -60,20 +64,23 @@ const Signup = () => {
 
     if (b == true) {
       try {
-        await signUp(email, password).then(async(res)=>{
+        await signUp(email, password).then(async (res) => {
           const user = res.user;
           console.log(user);
           await updateProfile(user, {
-            displayName:name,
+            displayName: name,
+            // tenantId:Intern, //not working
           });
         })
-        await addDoc(signupCollectionRef, {internId:Intern,
-           name:name,
-            mobileNumber:mobile,
-            emailid:email,
-            password:password
-          })
-          
+        await addDoc(signupCollectionRef, {
+          internId: Intern,
+          internship_type:value,
+          name: name,
+          mobileNumber: mobile,
+          emailid: email,
+          password: password
+        })
+
         navigate("/");
       } catch (err) {
         setError(err.message);
@@ -129,7 +136,7 @@ const Signup = () => {
         <Container style={{ width: "400px" }}>
           <Row>
             <Col>
-            <img className="login-logo" src={require("./logo.jpeg")} alt="logo" />
+              <img className="login-logo" src={require("./logo.jpeg")} alt="logo" />
 
               <div className="p-4 box">
 
@@ -137,7 +144,7 @@ const Signup = () => {
                 {/* {users.map((user)=>{
           return <div>{user.intern_id}</div>
         })} */}
-       
+
 
 
                 <h2 className="mb-3">Signup</h2>
@@ -156,13 +163,21 @@ const Signup = () => {
                       onChange={(e) => setIntern(e.target.value)}
                     />
                   </Form.Group>
+                  <Form.Group className="mb-3">
+
+                    <select className="sign-select" required value={value} onChange={handleChange} >
+                    <option value="">Select Internship</option>
+                      <option value="Web Development">Web Development</option>
+                      <option value="HR">HR</option>
+                    </select>
+                  </Form.Group>
 
                   <Form.Group className="mb-3">
                     <Form.Control
                       type="text"
                       placeholder="Enter Your Name"
                       required
-                    onChange={(e) => setName(e.target.value)}
+                      onChange={(e) => setName(e.target.value)}
                     />
                   </Form.Group>
 
@@ -172,7 +187,7 @@ const Signup = () => {
                       pattern="[0-9]{10}"
                       placeholder="Enter Your Mobile Number"
                       required
-                    onChange={(e) => setMobile(e.target.value)}
+                      onChange={(e) => setMobile(e.target.value)}
                     />
                   </Form.Group>
 

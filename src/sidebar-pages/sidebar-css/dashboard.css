@@ -50,6 +50,7 @@ height: 235px;
     justify-content: space-between;
 }
 
+
 @media only screen and (max-width: 700px){
     .side-boxes{
         margin-left: 182px;

@@ -12,14 +12,17 @@
 .logo-img{
     width: 205px;
     height: 90px;
+    cursor: pointer;
 }
 .help-logo{
     width: 100px;
     margin-top: 15px;
+    cursor: pointer;
 }
 .certificate-logo{
     width: 100px;
     margin-top: 6px;
+    cursor: pointer;
 }
 .certificate-name{
     text-align: center;
@@ -148,6 +151,15 @@
     list-style: none;
     font-size: 30px;
 }
+.menu li:hover{
+    color: blue;
+}
+.header-certificate{
+    display: none;
+}
+.header-help{
+    display: none;
+}
 
 @media only screen and (max-width: 1000px){
     .header-names{
@@ -159,9 +171,35 @@
         font-size: 1.3rem;
     }
 }
+@media only screen and (max-width: 768px){
+    .certificate-logo{
+        display: none;
+    }
+    .certificate-name{
+        display: none;
+    }
+    .header-certificate{
+        display: block;
+    }
+    .navigation.active{ 
+        height: 235px;
+    }
+}
 @media only screen and (max-width: 600px){
     .header-names{
         font-size: 1rem;
+    }
+    .help-logo{
+       display: none;
+    }
+    .help-name{
+        display: none;
+    }
+    .header-help{
+        display: block;
+    }
+    .navigation.active{ 
+        height: 280px;
     }
 }
 @media only screen and (max-width: 450px){
