@@ -11,7 +11,7 @@ import { collection, getDocs, addDoc } from 'firebase/firestore';
 import { updateProfile } from "firebase/auth";
 
 const Signup = () => {
-  const [Intern, setIntern] = useState();
+  const [intern, setIntern] = useState();
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState();
   const [email, setEmail] = useState("");
@@ -28,18 +28,22 @@ const Signup = () => {
   const usersCollectionRef = collection(db, "users");
   const signupCollectionRef = collection(db, "signupData")
 
+  
+
   useEffect(() => {
 
     const getUsers = async () => {
       const data = await getDocs(usersCollectionRef);
-      console.log(data);
+      // console.log(data);
 
       setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-      console.log(users);
+      // console.log(users);
 
     };
 
     getUsers();
+
+    
   }, [])
 
   const handleChange = (e) => {
@@ -53,10 +57,13 @@ const Signup = () => {
   })
   // console.log(usersId);
 
+
   var b = usersId.some(checkValid);
   function checkValid(id) {
-    return id == Intern;
+    return id == intern;
   }
+
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -66,22 +73,21 @@ const Signup = () => {
       try {
         await signUp(email, password).then(async (res) => {
           const user = res.user;
-          console.log(user);
+          // console.log(user);
           await updateProfile(user, {
             displayName: name,
-            // tenantId:Intern, //not working
+
           });
         })
         await addDoc(signupCollectionRef, {
-          internId: Intern,
+          internId: intern,
           internship_type:value,
           name: name,
           mobileNumber: mobile,
           emailid: email,
-          password: password
         })
 
-        navigate("/");
+        navigate("/dashboard");
       } catch (err) {
         setError(err.message);
         console.log(error);
@@ -129,6 +135,9 @@ const Signup = () => {
   // setInternError(true);
   // }
 
+  const getTasks = async()=>{
+    
+  }
 
   return (
     <>
@@ -136,6 +145,8 @@ const Signup = () => {
         <Container style={{ width: "400px" }}>
           <Row>
             <Col>
+
+
               <img className="login-logo" src={require("./logo.jpeg")} alt="logo" />
 
               <div className="p-4 box">
@@ -145,7 +156,7 @@ const Signup = () => {
           return <div>{user.intern_id}</div>
         })} */}
 
-
+        
 
                 <h2 className="mb-3">Signup</h2>
 
