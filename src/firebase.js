@@ -6,13 +6,13 @@ import {getFirestore} from "@firebase/firestore";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDftw9h4n5HRJep8HS5Mrby3ggY5zDY02A",
-  authDomain: "company-website-3d1d7.firebaseapp.com",
-  projectId: "company-website-3d1d7",
-  storageBucket: "company-website-3d1d7.appspot.com",
-  messagingSenderId: "845038023734",
-  appId: "1:845038023734:web:470c27c0d9f4c79c845497",
-  measurementId: "G-RP9EMSJEPJ"
+  apiKey: "AIzaSyAkhnJlRY3nyMPhHftZXXYhrK4xItZJCOY",
+  authDomain: "digitalguruindia-a1e40.firebaseapp.com",
+  projectId: "digitalguruindia-a1e40",
+  storageBucket: "digitalguruindia-a1e40.appspot.com",
+  messagingSenderId: "844269230349",
+  appId: "1:844269230349:web:3f1ffb79b4cfe321937844",
+  measurementId: "G-CEMQ5NEEJP"
 };
 
 // Initialize Firebase

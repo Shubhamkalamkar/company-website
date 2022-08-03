@@ -2,22 +2,20 @@ import React from "react";
 import { Sidebar } from "../components/Sidebar";
 import "./sidebar-css/dashboard.css";
 import { Header } from "../components/Header";
-import { auth } from "../firebase";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useUserAuth } from "../context/UserAuthContext";
+import { useEffect } from "react";
+
 
 export const Dashboard = () => {
-  const [userName, setUserName] = useState("");
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      // console.log(user);
 
-      if (user) {
-        setUserName(user.displayName);
-      } else {
-        setUserName("");
-      }
-    });
-  }, []);
+  const { tasks,completeTasks,reviewTasks,scoreTasks, user } = useUserAuth();
+  const [userName, setUserName] = useState("");
+
+  useEffect(()=>{
+    setUserName(user.displayName);
+  }, [tasks]);
+
   return (
     <>
       <div>
@@ -44,19 +42,23 @@ export const Dashboard = () => {
           <div className="small-boxs">
             <div className="small-box">
               Task Alloted
-              <h1>0</h1>
+              <h1>{tasks.length}</h1>
             </div>
             <div className="small-box">
               Task Completed
-              <h1>0</h1>
+              <h1>{completeTasks.length}</h1>
             </div>
             <div className="small-box">
             Task Reviewed
-            <h1>0</h1>
+            <h1>{reviewTasks.length}</h1>
             </div>
             <div className="small-box">
             Score
-            <h1>0</h1>
+            <h1>
+            {scoreTasks.map((score, i) =>{
+              return score.score
+            } )}
+            </h1>
             </div>
           </div>
           <div className="process-box">

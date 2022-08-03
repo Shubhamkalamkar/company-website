@@ -30,10 +30,12 @@
 }
 
 .submit-link input {
-  width: 50%;
+  width: 75%;
   padding: 6px;
   border: 1px solid deepskyblue;
   border-radius: 5px;
+  margin-left: 255px;
+  margin-bottom: 50px;
 }
 
 .submit-link button {
@@ -77,12 +79,26 @@
   border: none;
   color: black;
 }
+.submit-link button:disabled {
+  background-color: wheat;
+  border: none;
+  color: black;
+}
+
+@media only screen and (max-width: 1300px) {
+  .submit-link input {
+    width: 72%;
+  }
+}
 
 @media only screen and (max-width: 1200px) {
   .task_img {
     width: 400px;
     height: 400px;
     margin: 20px 20px 0px 20px;
+  }
+  .submit-link input {
+    width: 66%;
   }
 }
 
@@ -91,6 +107,9 @@
     width: 320px;
     height: 320px;
     margin: 15px 15px 0px 15px;
+  }
+  .submit-link input {
+    width: 54%;
   }
 }
 
@@ -103,11 +122,17 @@
     height: 260px;
     margin: 10px 10px 0px 10px;
   }
+  .submit-link input {
+    margin-left: 185px;
+  }
 }
 
 @media only screen and (max-width: 600px) {
   .task-container {
     margin-left: 61px;
+  }
+  .submit-link input {
+    margin-left: 95px;
   }
 }
 
@@ -123,5 +148,8 @@
       width: 200px;
       height: 200px;
       margin: 10px 10px 0px 10px;
+    }
+    .submit-link input {
+      margin-left: 70px;
     }
   }

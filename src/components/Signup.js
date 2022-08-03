@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useUserAuth } from "../context/UserAuthContext";
-import { async } from "@firebase/util";
 
 import { db } from '../firebase';
 import { collection, getDocs, addDoc } from 'firebase/firestore';
@@ -28,7 +27,7 @@ const Signup = () => {
   const usersCollectionRef = collection(db, "users");
   const signupCollectionRef = collection(db, "signupData")
 
-  
+
 
   useEffect(() => {
 
@@ -43,7 +42,7 @@ const Signup = () => {
 
     getUsers();
 
-    
+
   }, [])
 
   const handleChange = (e) => {
@@ -63,7 +62,7 @@ const Signup = () => {
     return id == intern;
   }
 
-  
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -81,7 +80,7 @@ const Signup = () => {
         })
         await addDoc(signupCollectionRef, {
           internId: intern,
-          internship_type:value,
+          internship_type: value,
           name: name,
           mobileNumber: mobile,
           emailid: email,
@@ -96,48 +95,7 @@ const Signup = () => {
     } else {
       setInternError(true);
     }
-
-    // for(let i=0;i<usersId.length;i++){
-    //   while(usersId[i]==Intern){
-    //     try {
-    //     await signUp(email, password);
-    //     navigate("/");
-    //         } catch (err) {
-    //     setError(err.message);
-    //     console.log(error);
-    //     } 
-    //    }
-    // }
-    // for(let i=0;i<usersId.length;i++){
-    //   if(usersId[i]!=Intern){
-    //     setInternError(true);
-
-    //    } 
-    // }
-
   };
-  // const validIntern = ()=>{
-  //   usersId.push(users.map((ids)=>ids.intern_id)) ;
-  // }
-  // console.log(usersId);
-
-  //   if (Intern === users.map((user) => {
-  //     return user.intern_id
-  // })) {
-  // try {
-  // await signUp(email, password);
-  // navigate("/");
-  // } catch (err) {
-  // setError(err.message);
-  // console.log(usersId);
-  // } 
-  // } else {
-  // setInternError(true);
-  // }
-
-  const getTasks = async()=>{
-    
-  }
 
   return (
     <>
@@ -156,7 +114,7 @@ const Signup = () => {
           return <div>{user.intern_id}</div>
         })} */}
 
-        
+
 
                 <h2 className="mb-3">Signup</h2>
 
@@ -177,7 +135,7 @@ const Signup = () => {
                   <Form.Group className="mb-3">
 
                     <select className="sign-select" required value={value} onChange={handleChange} >
-                    <option value="">Select Internship</option>
+                      <option value="">Select Internship</option>
                       <option value="Web Development">Web Development</option>
                       <option value="HR">HR</option>
                     </select>
