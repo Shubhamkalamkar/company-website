@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./header.css";
 
 import { useUserAuth } from "../context/UserAuthContext";
-import { updateProfile } from "firebase/auth";
 
 import { useNavigate } from "react-router-dom";
-import { auth, storage } from "../firebase";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 
 export const Header = () => {
@@ -15,23 +12,10 @@ export const Header = () => {
   
   const [userName, setUserName] = useState("");
 
-  const [userdata, setUserdata] = useState();
-  const [profilePhoto, setProfilePhoto] = useState(null);
-  const [url, setUrl] = useState(null);
 
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      // console.log(user);
-      if (user) {
-        setUserName(user.displayName);
-        setUserdata(user)
-      } else {
-        setUserName("");
-      }
-    });
-  }, []);
-
-  const storageRef = ref(storage, "profilePhotos");
+  useEffect(()=>{
+    setUserName(user.displayName);
+  }, [isactive]);
 
   const navigate = useNavigate();
   const handleLogout = async () => {
@@ -47,58 +31,77 @@ export const Header = () => {
     setIsactive(!isactive);
   };
 
-  const uploadImg = ()=>{
-    
-    uploadBytes(storageRef, profilePhoto).then(()=>{
-      getDownloadURL(storageRef).then((url)=>{
-        setUrl(url);
-        console.log(url)
-      }).catch(error =>{
-        console.log(error.message)
-      });
-      setProfilePhoto(null)
-    }).catch((e)=>{
-      console.log(e.message)
-    });
-
-    // uploadTask.on(
-    //   (error) => {
-    //     // Handle unsuccessful uploads
-    //     console.log("error while uploading img")
-        
-    //   },
-    //   () => {
-    //     getDownloadURL(uploadTask.snapshot.ref).then(async(downloadURL) => {
-    //       console.log("File available at", downloadURL);
-    //       await updateProfile(userdata,{
-    //         photoURL:downloadURL
-    //       });
-           
-    //     });
-    //   }
-    // )
-  }
-    
+  
 
   
   
 
   return (
+    <>
+    
+    <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel">Help</h5>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div className="modal-body">
+        <form>
+          <div className="mb-3">
+            <label htmlFor="message-text" className="col-form-label">Enter Your Message:</label>
+            <textarea className="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" className="btn btn-primary">Send message</button>
+      </div>
+    </div>
+</div>
+    </div>
+
+    <div className="modal fade" id="exampleModal2" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel">Request Certificate</h5>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div className="modal-body">
+        <form>
+          <div className="mb-3">
+            <label htmlFor="message-text" className="col-form-label">Enter Your Email:</label>
+            <input className="form-control" id="message-text"></input>
+          </div>
+          <div className="mb-3">
+            <label htmlFor="message-text" className="col-form-label">Enter Your Intern Id:</label>
+            <input className="form-control" id="message-text"></input>
+          </div>
+        </form>
+      </div>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" className="btn btn-primary">Send message</button>
+      </div>
+    </div>
+</div>
+    </div>
+
+    
     <div className="header-container">
       <div className="header-names">
-        <img className="logo-img" src={require("./logo.jpeg")} alt="logo" />
+        <img className="logo-img" onClick={()=>{navigate("/dashboard")}} src={require("./logo.jpeg")} alt="logo" />
       </div>
-      <div>
+      <div data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">
         {" "}
         <img className="help-logo" src={require("./help.jpg")} alt="logo" />
         <p className="help-name" style={{textAlign: "center"}}>Help</p>
       </div>
-      <div>
+      <div data-bs-toggle="modal" data-bs-target="#exampleModal2" data-bs-whatever="@fat">
       <img className="certificate-logo" src={require("./certificate.png")} alt="logo" />
       <p className="certificate-name">Certificate</p>
-
-      <button onClick={uploadImg}>upload</button>
-
       </div>
 
       {/* <div className="header-names">
@@ -111,19 +114,19 @@ export const Header = () => {
 
             <div className="imgbox" >
 
-              {/* <img src={require("./user.png")} alt="user" /> */}
-              <input
+              <img src={require("./user.png")} alt="user" />
+              {/* <input
             style={{ display: "none" }}
             type="file"
             name=""
             id="file"
             required
             onChange={(e) => setProfilePhoto(e.target.files[0])}
-          />
-          <label htmlFor="file" className="add_avatar">
+          /> */}
+          {/* <label htmlFor="file" className="add_avatar">
             <img src={require("./user.png")} alt="" />
             <span style={{ color: "white" }}>Add an avatar</span>
-          </label>
+          </label> */}
 
             </div>
 
@@ -141,5 +144,6 @@ export const Header = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
