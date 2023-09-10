@@ -3,7 +3,16 @@ const bcrypt = require('bcrypt');
 
 const createUser = (req, res, next) => {
     const data = req.body;
-
+    const dateString = data.dateOfBirth;
+    const parts = dateString.split('-');
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1; // Months are 0-based (January is 0, February is 1, etc.)
+    const year = parseInt(parts[2], 10);
+    
+    const dateOfBirth = new Date(year, month, day);
+    data.dateOfBirth = dateOfBirth
+    let date = new Date().toLocaleString();
+    data.createdAt = date
     bcrypt.hash(data.password, 10, async (err, encrypted) => {
         if (err) {
             err.message = 'Something went wrong while hashing the password!';
@@ -11,7 +20,7 @@ const createUser = (req, res, next) => {
             next(err);
         } else {
             // Hashed password is available here
-            console.log(encrypted);
+            // console.log(encrypted);
 
             // Update the password in the data object
             data.password = encrypted;

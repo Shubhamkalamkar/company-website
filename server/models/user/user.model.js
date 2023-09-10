@@ -17,9 +17,9 @@ const userSchema = new Schema(
             require: true,
             unique: true
         },
-        role:{
-            type:String,
-            require:true
+        role: {
+            type: String,
+            require: true
         },
         mobileNumber: {
             type: Number,
@@ -27,7 +27,7 @@ const userSchema = new Schema(
         },
         dateOfBirth: {
             type: String,
-            require: true
+            require: Date
         },
         internshipType: {
             type: String,
@@ -41,6 +41,14 @@ const userSchema = new Schema(
         password: {
             type: String,
             require: true
+        },
+        createdAt: {
+            type: Date,
+            require: true
+        },
+        updatedAt: {
+            type: Date,
+            require: true
         }
 
     }
@@ -49,10 +57,10 @@ const userSchema = new Schema(
 // Define the comparePassword method
 userSchema.methods.comparePassword = function (candidatePassword, callback) {
     bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
-      if (err) return callback(err);
-      callback(null, isMatch);
+        if (err) return callback(err);
+        callback(null, isMatch);
     });
-  };
+};
 
 const User = mongoose.model("User", userSchema);
 module.exports = User
