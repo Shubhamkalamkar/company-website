@@ -14,10 +14,7 @@ export const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.email || !formData.password || !formData.fullName || !formData.internId) {
-      alert('Please fill all fields.');
-      return;
-    }
+   
     fetch(`${environment.baseURL}user/create`, {
       method: "POST",
       headers: {

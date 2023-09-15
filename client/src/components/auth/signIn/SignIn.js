@@ -11,10 +11,7 @@ export const SignIn = () => {
 
   const handleSignIn = (e) => {
     e.preventDefault()
-    if (!formData.email || !formData.password) {
-      alert('Please fill in both email and password fields.');
-      return;
-    }
+    
     console.log(formData)
     fetch(`${environment.baseURL}auth/login`, {
       method: "POST",
