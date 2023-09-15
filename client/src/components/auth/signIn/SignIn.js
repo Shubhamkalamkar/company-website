@@ -11,6 +11,10 @@ export const SignIn = () => {
 
   const handleSignIn = (e) => {
     e.preventDefault()
+    if (!formData.email || !formData.password) {
+      alert('Please fill in both email and password fields.');
+      return;
+    }
     console.log(formData)
     fetch(`${environment.baseURL}auth/login`, {
       method: "POST",
@@ -53,10 +57,10 @@ export const SignIn = () => {
     <div className="container">
       <form>
         <label htmlFor="email">Email</label>
-        <input type="email" id="email" value={formData.email} onChange={(e) => setFormData({ email: e.target.value })} />
+        <input type="email" id="email" required value={formData.email} onChange={(e) => setFormData({ email: e.target.value })} />
         <br />
         <label htmlFor="password">password</label>
-        <input type="password" id="password" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
+        <input type="password" id="password" required value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
         <br />
         <button onClick={handleSignIn}>SignIn</button>
       </form>

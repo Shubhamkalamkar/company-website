@@ -14,6 +14,10 @@ export const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!formData.email || !formData.password || !formData.fullName || !formData.internId) {
+      alert('Please fill all fields.');
+      return;
+    }
     fetch(`${environment.baseURL}user/create`, {
       method: "POST",
       headers: {
@@ -40,53 +44,53 @@ export const Signup = () => {
 
   return (
     <>
-    <div className="container">
-      {error && (
-        <div style={{ color: "white", background: "red" }}>Error: {error}</div>
-      )}{" "}
-      {/* Display error message if it exists */}
-      <form>
-        <label htmlFor="fullName">Full Name</label>
-        <input
-          type="text"
-          id="firstName"
-          value={formData.firstName}
-          onChange={(e) =>
-            setFormData({ ...formData, firstName: e.target.value })
-          }
-        />
-        <br />
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-        />
-        <br />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          value={formData.password}
-          onChange={(e) =>
-            setFormData({ ...formData, password: e.target.value })
-          }
-        />
-        <br />
-        <label htmlFor="internId">Intern Id</label>
-        <input
-          type="number"
-          id="internId"
-          value={formData.role}
-          onChange={(e) =>
-            setFormData({ ...formData, internId: e.target.value })
-          }
-        />
-        <br />
-        <button onClick={handleSubmit}>submit</button>
-      </form>
-      <p onClick={() => navigate("/")}>i have account signIn</p>
+      <div className="container">
+        {error && (
+          <div style={{ color: "white", background: "red" }}>Error: {error}</div>
+        )}{" "}
+        {/* Display error message if it exists */}
+        <form>
+          <label htmlFor="fullName">Full Name</label>
+          <input
+            type="text"
+            id="firstName"
+            value={formData.firstName}
+            onChange={(e) =>
+              setFormData({ ...formData, firstName: e.target.value })
+            }
+          />
+          <br />
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+          />
+          <br />
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            value={formData.password}
+            onChange={(e) =>
+              setFormData({ ...formData, password: e.target.value })
+            }
+          />
+          <br />
+          <label htmlFor="internId">Intern Id</label>
+          <input
+            type="number"
+            id="internId"
+            value={formData.role}
+            onChange={(e) =>
+              setFormData({ ...formData, internId: e.target.value })
+            }
+          />
+          <br />
+          <button onClick={handleSubmit}>submit</button>
+        </form>
+        <p onClick={() => navigate("/")}>i have account signIn</p>
       </div>
     </>
   );
