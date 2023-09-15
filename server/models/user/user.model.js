@@ -1,66 +1,38 @@
 const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
-const Schema = mongoose.Schema
 
-const userSchema = new Schema(
-    {
-        firstName: {
-            type: String,
-            require: true
-        },
-        lastName: {
-            type: String,
-            require: true
-        },
-        internId: {
-            type: Number,
-            require: true,
-            unique: true
-        },
-        role: {
-            type: String,
-            require: true
-        },
-        mobileNumber: {
-            type: Number,
-            require: true
-        },
-        dateOfBirth: {
-            type: String,
-            require: Date
-        },
-        internshipType: {
-            type: String,
-            require: true
-        },
-        email: {
-            type: String,
-            require: true,
-            unique: true
-        },
-        password: {
-            type: String,
-            require: true
-        },
-        createdAt: {
-            type: Date,
-            require: true
-        },
-        updatedAt: {
-            type: Date,
-            require: true
-        }
+const userSchema = mongoose.Schema({
+    fullName: {
+        type: String,
 
+    },
+    added: {
+        type: String
+    },
+    internId: {
+        type: Number,
+        required: true
+    },
+    email: {
+        type: String,
+    },
+    password: {
+        type: String,
+
+    },
+    role: {
+        type: String,
+
+        default: "user"
+    },
+    progress: {
+        type: String
+    },
+    isUserSignup: {
+        type: Boolean,
+        default: false
     }
-)
+})
 
-// Define the comparePassword method
-userSchema.methods.comparePassword = function (candidatePassword, callback) {
-    bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
-        if (err) return callback(err);
-        callback(null, isMatch);
-    });
-};
+const User = mongoose.model('user', userSchema)
 
-const User = mongoose.model("User", userSchema);
 module.exports = User

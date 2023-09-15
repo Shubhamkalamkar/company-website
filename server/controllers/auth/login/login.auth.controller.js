@@ -1,38 +1,43 @@
-const User = require('../../../models/user/user.model');
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
+const User = require('../../../models/user/user.model')
+const jwt = require('jsonwebtoken')
+const bcrypt = require("bcrypt");
+
 
 const login = (req, res, next) => {
     const data = req.body;
+    console.log(data)
     User.findOne({ email: data.email }).then((user) => {
         if (!user) {
-            // If no user with the provided email exists, return an error
-            return res.status(401).json({ message: 'Authentication failed. User not found.' });
+            return res.status(401).json({ "message": "Invalid Email " })
+        } else {
+
+            bcrypt.compare(data.password, user.password, (err, result) => {
+
+                if (err) {
+                    err.message = "Error while verifing password";
+                    throw err;
+                }
+                if (result === true) {
+                    let tokenPayload = {
+                        email: user.email,
+                        // deviceType: deviceType,
+                        _id: user._id,
+                        role: user.role
+                    };
+                    let token = jwt.sign(tokenPayload, "jhubkwefkjfsdajfhv");
+                    res.status(200).json({ message: "signIn Successfully", role: user.role, token: token })
+                } else {
+                    let error = new Error("Invalid Password");
+                    error.status = 404;
+                    next(error);
+                }
+            })
+            // else {
+            //     return res.status(401).json({ "message": "Invalid Password " })
+            // }
         }
-        user.comparePassword(data.password, (err, isMatch) => {
-            if (err) {
-                return res.status(500).json({ message: 'Internal Server Error' });
-            }
-            if (!isMatch) {
-                // If the password does not match, return an error
-                return res.status(401).json({ message: 'Authentication failed. Wrong password.' });
-            }
-            const tokenPayload = {
-                email: user.email,
-                _id: user._id,
-                role: user.role,
-            };
-            const token = jwt.sign(tokenPayload, process.env.AUTH_TOKEN_SECRET);
-            
-            // Return the token in the response
-            res.status(200).json({ message: 'Login successful', token });
-        });
     })
-    .catch((err) => {
-        // Handle any other errors
-        console.error(err);
-        res.status(500).json({ message: 'Internal Server Error' });
-    });
+
 }
 
-module.exports = login;
+module.exports = login

@@ -1,52 +1,35 @@
-
-import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import Home from "./components/Home";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
-import { Sidebar } from "./components/Sidebar";
-import ProtectedRoute from "./components/ProtectedRoute";
-import { UserAuthContextProvider } from "./context/UserAuthContext";
-import { Dashboard } from "./sidebar-pages/Dashboard";
-import { Blogs } from "./sidebar-pages/Blogs";
-import { Courses } from "./sidebar-pages/Courses";
-import { Projects } from "./sidebar-pages/Projects";
-import { Reports } from "./sidebar-pages/Reports";
-import { Payments } from "./sidebar-pages/Payments";
-import { Activities } from "./sidebar-pages/Activities";
-import { Settings } from "./sidebar-pages/Settings";
+import { Route, Routes } from "react-router-dom";
+import { SignIn } from "./components/auth/signIn/SignIn";
+import { Signup } from "./components/auth/signUp/Signup";
+import {AdminDashboard} from './components/admin/dashboard/AdminDashboard'
+import { NotFound } from './components/notFound/NotFound';
+import { UserDashboard } from './components/user/dashboard/UserDashboard';
 
+// redux
+import { useSelector, useDispatch } from "react-redux";
 
 function App() {
-
+  const myState = useSelector((state) => state.changeTheNumber);
+  console.log(myState)
+  const dispatch = useDispatch();
 
   return (
+    <>
+      {/* redux */}
+      <h1>{myState}</h1>
+      <button onClick={() => dispatch({ type: "INCREMENT" })}>+</button>
+      <button onClick={() => dispatch({ type: "DECREMENT" })}>-</button>
 
-    <div>
-      <UserAuthContextProvider>
-        <Routes>
-          <Route exact path="/" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-          {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-          <Route path="/blog" element={<ProtectedRoute><Blogs /></ProtectedRoute>} />
-          <Route path="/course" element={<ProtectedRoute><Courses /></ProtectedRoute>} />
-          <Route path="/projects" element={<ProtectedRoute><Projects /></ProtectedRoute>} />
-          <Route path="/report" element={<ProtectedRoute><Reports /></ProtectedRoute>} />
-          <Route path="/payment" element={<ProtectedRoute><Payments /></ProtectedRoute>} />
-          <Route path="/activities" element={<ProtectedRoute><Activities /></ProtectedRoute>} />
-          <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
-        </Routes>
-      </UserAuthContextProvider>
-    </div>
-
+      {/* --------- */}
+      <Routes>
+      <Route path="/" element={<SignIn />} />
+      <Route path="/signup" element={<Signup/>} />
+      <Route path='admindash' element={<AdminDashboard/>}/>
+      <Route path='userdash' element={<UserDashboard/>}/>
+      <Route path='*' element={<NotFound/>}/>
+    </Routes>
+    </>
   );
 }
 
