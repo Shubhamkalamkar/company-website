@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router"
 import environment from "../../../environment"
+import Cookies from 'js-cookie'
 
 export const SignIn = () => {
   const [formData, setFormData] = useState({
@@ -37,7 +38,8 @@ export const SignIn = () => {
     }).then((data) => {
 
       console.log(data)
-      alert(data.message)
+      Cookies.set('token',data.token)
+      alert(data.Message)
       if (data.role === "admin") {
         navigate('/admindash')
       }

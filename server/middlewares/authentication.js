@@ -18,7 +18,7 @@ const authentication = (req, res, next) => {
                     next()
                 }
                 else {
-                    return res.status(401).json({ message: "user not authorized " })
+                    return res.status(401).json({ Message: "user not authorized " })
                 }
             }
             else {

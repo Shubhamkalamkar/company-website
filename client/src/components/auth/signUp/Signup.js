@@ -29,13 +29,13 @@ export const Signup = () => {
         return data.json();
       })
       .then((data) => {
-        alert(data.message);
-        setError(data.message);
+        alert(data.Message);
+        setError(data.Message);
         console.log(data);
       })
       .catch((err) => {
         console.log(err);
-        setError(err.message); // Set the error message state
+        setError(err.Message); // Set the error Message state
       });
   };
 
@@ -45,7 +45,7 @@ export const Signup = () => {
         {error && (
           <div style={{ color: "white", background: "red" }}>Error: {error}</div>
         )}{" "}
-        {/* Display error message if it exists */}
+        {/* Display error Message if it exists */}
         <form>
           <label htmlFor="fullName">Full Name</label>
           <input
