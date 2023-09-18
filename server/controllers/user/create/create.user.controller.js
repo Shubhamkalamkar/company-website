@@ -55,6 +55,7 @@ const User = require('../../../models/user/user.model');
 const bcrypt = require('bcrypt');
 
 const createUser = async (req, res, next) => {
+    console.log(req.body)
     try {
         const data = req.body;
         const currentUser = req.user;
@@ -68,7 +69,7 @@ const createUser = async (req, res, next) => {
                 else {
                     let user = await User.find().where('email').equals(`${data.email}`);
                     console.log(user)
-                    if (user.length>0) {
+                    if (user.length > 0) {
                         let err = new Error("email already used ")
                         return next(err)
                     }
@@ -101,12 +102,12 @@ const createUser = async (req, res, next) => {
                     res.status(409).json({ Message: "intern id already exists" });
                 }
             }
-            else{
+            else {
                 let err = new Error("Intern Id Required")
                 next(err)
             }
         } else {
-            if (!data.email || !data.password || !data.intern || !data.fullName) {
+            if (!data.email || !data.password || !data.internId || !data.fullName) {
                 let err = new Error("Email, password and internId needed for SignUp")
                 next(err)
             }

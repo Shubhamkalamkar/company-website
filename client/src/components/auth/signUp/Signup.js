@@ -14,7 +14,7 @@ export const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-   
+   console.log(formData)
     fetch(`${environment.baseURL}user/create`, {
       method: "POST",
       headers: {
@@ -50,10 +50,10 @@ export const Signup = () => {
           <label htmlFor="fullName">Full Name</label>
           <input
             type="text"
-            id="firstName"
-            value={formData.firstName}
+            id="fullName"
+            value={formData.fullName}
             onChange={(e) =>
-              setFormData({ ...formData, firstName: e.target.value })
+              setFormData({ ...formData, fullName: e.target.value })
             }
           />
           <br />
