@@ -9,8 +9,7 @@ const userSchema = mongoose.Schema({
         type: String
     },
     internId: {
-        type: Number,
-        required: true
+        type: Number
     },
     email: {
         type: String,

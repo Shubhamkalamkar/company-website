@@ -60,19 +60,50 @@ const createUser = async (req, res, next) => {
         const currentUser = req.user;
 
         if (currentUser?.role === 'admin') {
-            data.progress = 'inter Id assign';
-            const duplicate = await User.findOne({ internId: data.internId });
-            if (!duplicate) {
-                data.added = currentUser._id;
-                const user = new User(data);
-                await user.save();
-                res.send({ Message: "user added" });
-            } else {
-                res.status(409).json({ Message: "intern id already exists" });
+
+            if (data.role === 'admin') {
+                if (!data.email || !data.password) {
+                    res.status(503).json({ "message": "Please enter email and password" })
+                }
+                else {
+                    let user = await User.find().where('email').equals(`${data.email}`);
+                    console.log(user)
+                    if (user.length>0) {
+                        let err = new Error("email already used ")
+                        return next(err)
+                    }
+                    bcrypt.hash(data.password, 10, async (err, encrypted) => {
+
+                        if (err) {
+                            err.Message = 'Something went wrong while hashing the password!';
+                            if (!err.status) err.status = 503;
+                            throw err;
+                        }
+                        else {
+                            data.password = encrypted;
+                            data.added = currentUser._id;
+                            const user = new User(data);
+                            await user.save();
+                            res.send({ Message: "Admin added" });
+                        }
+                    })
+                }
+            }
+            if (data.internId) {
+                const duplicate = await User.findOne({ internId: data.internId });
+                if (!duplicate) {
+                    data.added = currentUser._id;
+                    data.progress = 'inter Id assign';
+                    const user = new User(data);
+                    await user.save();
+                    res.send({ Message: "user added" });
+                } else {
+                    res.status(409).json({ Message: "intern id already exists" });
+                }
             }
         } else {
-            if (!data.email || !data.password) {
-                let err = new Error("Email and password needed for SignUp")
+            if (!data.email || !data.password || !data.intern) {
+                let err = new Error("Email, password and internId needed for SignUp")
                 next(err)
             }
             const internId = req.body.internId;
