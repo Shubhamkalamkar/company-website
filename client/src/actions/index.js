@@ -9,3 +9,10 @@ export const decrement = () => {
         type: "DECREMENT"
     }
 }
+
+export const currentUser = (payload)=>{
+    return{
+        type:"SET_USER",
+        payload:payload
+    }
+}

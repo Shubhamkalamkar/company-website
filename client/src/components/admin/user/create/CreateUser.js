@@ -7,6 +7,7 @@ export const CreateUser = () => {
     const [userType, setUserType] = useState('select')
     const [userFormData, setUserFormData] = useState({ internId: "" })
     const [adminFormData, setAdminFormData] = useState({
+        fullName:"",
         email: "",
         password: "",
         role: "admin"
@@ -56,8 +57,16 @@ export const CreateUser = () => {
                     <option value="user">User</option>
                 </select>
 
-                {userType == "admin" &&
+                {userType === "admin" &&
                     <form>
+                        <label htmlFor="fullName">fullName</label>
+                        <input
+                            type="text"
+                            id="fullName"
+                            value={adminFormData.fullName}
+                            onChange={(e) => setAdminFormData({ ...adminFormData, fullName: e.target.value })}
+                        />
+                        <br />
                         <label htmlFor="email">Email</label>
                         <input
                             type="email"
@@ -79,7 +88,7 @@ export const CreateUser = () => {
                         <button onClick={addAdmin}>Add Admin</button>
                     </form>
                 }
-                {userType == "user" &&
+                {userType === "user" &&
                     <form>
                         <label htmlFor="internId">Intern Id</label>
                         <input

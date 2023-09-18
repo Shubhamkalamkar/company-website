@@ -101,8 +101,12 @@ const createUser = async (req, res, next) => {
                     res.status(409).json({ Message: "intern id already exists" });
                 }
             }
+            else{
+                let err = new Error("Intern Id Required")
+                next(err)
+            }
         } else {
-            if (!data.email || !data.password || !data.intern) {
+            if (!data.email || !data.password || !data.intern || !data.fullName) {
                 let err = new Error("Email, password and internId needed for SignUp")
                 next(err)
             }

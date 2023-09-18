@@ -3,7 +3,13 @@ import { useNavigate } from "react-router"
 import environment from "../../../environment"
 import Cookies from 'js-cookie'
 
+import { useDispatch } from "react-redux"
+
 export const SignIn = () => {
+
+  // const myState = useSelector((state)=>state.currentUser)
+  const dispatch = useDispatch()
+
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -39,6 +45,7 @@ export const SignIn = () => {
 
       console.log(data)
       Cookies.set('token',data.token)
+      dispatch({type:"SET_USER", payload:data.user})
       alert(data.Message)
       if (data.role === "admin") {
         navigate('/admindash')
