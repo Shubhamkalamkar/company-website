@@ -29,6 +29,10 @@ const userSchema = mongoose.Schema({
     isUserSignup: {
         type: Boolean,
         default: false
+    },
+    createdAt: {
+        type: Date,
+        default: new Date()
     }
 })
 

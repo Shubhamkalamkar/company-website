@@ -1,6 +1,7 @@
 const User = require('../../../models/user/user.model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require("bcrypt");
+require('dotenv').config()
 
 
 const login = (req, res, next) => {
@@ -28,7 +29,7 @@ const login = (req, res, next) => {
                         _id: user._id,
                         role: user.role
                     };
-                    let token = jwt.sign(tokenPayload, "jhubkwefkjfsdajfhv");
+                    let token = jwt.sign(tokenPayload, process.env.AUTH_TOKEN_SECRET);
                     res.status(200).json({ Message: "signIn Successfully", role: user.role, token: token, user:user })
                 } else {
                     let error = new Error("Invalid Password");

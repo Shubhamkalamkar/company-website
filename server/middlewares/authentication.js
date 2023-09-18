@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
 const authentication = (req, res, next) => {
     try {
@@ -10,7 +11,7 @@ const authentication = (req, res, next) => {
         }
         else {
             // admin add user
-            let decode = jwt.verify(token, "jhubkwefkjfsdajfhv");
+            let decode = jwt.verify(token, process.env.AUTH_TOKEN_SECRET);
             if (decode) {
                 console.log(decode)
                 req.user = decode
