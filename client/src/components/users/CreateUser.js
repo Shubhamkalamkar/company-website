@@ -1,5 +1,5 @@
 import { useState } from "react"
-import environment from "../../../../environment"
+import environment from "../../environment"
 import Cookies from 'js-cookie'
 
 export const CreateUser = () => {

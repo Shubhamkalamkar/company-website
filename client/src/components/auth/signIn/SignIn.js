@@ -18,7 +18,7 @@ export const SignIn = () => {
 
   const handleSignIn = (e) => {
     e.preventDefault()
-    
+
     console.log(formData)
     fetch(`${environment.baseURL}auth/login`, {
       method: "POST",
@@ -40,19 +40,12 @@ export const SignIn = () => {
         // alert('Invalid Credentials!')
         return data.json()
       }
-
     }).then((data) => {
-
       console.log(data)
-      Cookies.set('token',data.token)
-      dispatch({type:"SET_USER", payload:data.user})
+      Cookies.set('token', data.token)
+      dispatch({ type: "SET_USER", payload: data.user })
       alert(data.Message)
-      if (data.role === "admin") {
-        navigate('/admindash')
-      }
-      else if (data.role === "user") {
-        navigate('/userdash')
-      }
+      navigate('/dashboard')
     }).catch((err) => {
       alert(`Error ${err}`)
     })
@@ -60,19 +53,19 @@ export const SignIn = () => {
 
   return (
     <>
-    <div className="container">
-      <form>
-        <label htmlFor="email">Email</label>
-        <input type="email" id="email" required value={formData.email} onChange={(e) => setFormData({ email: e.target.value })} />
-        <br />
-        <label htmlFor="password">password</label>
-        <input type="password" id="password" required value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
-        <br />
-        <button onClick={handleSignIn}>SignIn</button>
-      </form>
-      <p onClick={() => navigate('/signUp')}>
-        i don't have account signUp
-      </p>
+      <div className="container">
+        <form>
+          <label htmlFor="email">Email</label>
+          <input type="email" id="email" required value={formData.email} onChange={(e) => setFormData({ email: e.target.value })} />
+          <br />
+          <label htmlFor="password">password</label>
+          <input type="password" id="password" required value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
+          <br />
+          <button onClick={handleSignIn}>SignIn</button>
+        </form>
+        <p onClick={() => navigate('/signUp')}>
+          i don't have account signUp
+        </p>
       </div>
     </>
   )
