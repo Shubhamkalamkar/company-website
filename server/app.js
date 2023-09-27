@@ -1,6 +1,6 @@
 const databaseConnection = require('./utils/database.util')
 const express = require('express')
-// const bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
 const mainRoute = require('./routes/main.route')
 const errorHandler = require('./controllers/error/error.controller')
 const cors = require('cors')
@@ -8,6 +8,7 @@ const cors = require('cors')
 const app = express();
 app.use(cors())
 app.use(express.json())
+// app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(bodyParser.json()); // for parsing application/json
 // app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 const port = 5000;

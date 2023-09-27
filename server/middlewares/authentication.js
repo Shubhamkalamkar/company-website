@@ -7,20 +7,25 @@ const authentication = (req, res, next) => {
         if (!token) {
             // user sign up
             //need intern id
-            next()
+            console.log(req.body.isSignup)
+            if (req.body.isSignup === true) {
+                next()
+            }
+            else {
+                let err = new Error('auth header not set')
+                next(err)
+            }
+
         }
         else {
             // admin add user
             let decode = jwt.verify(token, process.env.AUTH_TOKEN_SECRET);
             if (decode) {
-                console.log(decode)
+                // console.log(decode)
                 req.user = decode
-                if (decode.role == "admin") {
-                    next()
-                }
-                else {
-                    return res.status(401).json({ Message: "user not authorized " })
-                }
+                next()
+
+
             }
             else {
                 let error = new Error('Invalid auth key');

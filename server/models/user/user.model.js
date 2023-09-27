@@ -3,9 +3,8 @@ const mongoose = require('mongoose')
 const userSchema = mongoose.Schema({
     fullName: {
         type: String,
-
     },
-    added: {
+    created: {
         type: String
     },
     internId: {
@@ -16,11 +15,9 @@ const userSchema = mongoose.Schema({
     },
     password: {
         type: String,
-
     },
     role: {
         type: String,
-
         default: "user"
     },
     progress: {
@@ -30,6 +27,15 @@ const userSchema = mongoose.Schema({
         type: Boolean,
         default: false
     },
+    tasks: [
+        {
+            taskId: {
+                type: String,
+                ref: 'Task'
+            },
+            // Add other fields related to the task here
+        }
+    ],
     createdAt: {
         type: Date,
         default: new Date()
