@@ -1,3 +1,4 @@
+import { Header } from "../header/Header";
 
 export const Dashboard = () => {
 
@@ -8,6 +9,7 @@ export const Dashboard = () => {
 
     return (
         <>
+        <Header/>
             {user?.role === 'admin' &&
                 <div className="container">
                     <h1>Admin</h1>

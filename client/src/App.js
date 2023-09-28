@@ -25,7 +25,7 @@ function App() {
       <button onClick={() => dispatch({ type: "DECREMENT" })}>-</button> */}
 
       {/* --------- */}
-      <Header/>
+      {/* <Header/> */}
       <Routes >
         <Route path="/" element={<SignIn />} />
         <Route path="/signup" element={<Signup />} />

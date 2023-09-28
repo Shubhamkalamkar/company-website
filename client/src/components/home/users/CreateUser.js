@@ -1,6 +1,7 @@
 import { useState } from "react"
 import environment from "../../../environment"
 import Cookies from 'js-cookie'
+import { Header } from "../header/Header"
 
 export const CreateUser = () => {
 
@@ -50,6 +51,7 @@ export const CreateUser = () => {
 
     return (
         <>
+        <Header/>
             <div className="container">
                 <h1>Create User</h1>
                 <select name="userType" id="userType" value={userType} onChange={(e) => setUserType(e.target.value)}>

@@ -3,8 +3,11 @@ const Task = require("../../../models/task/task.model");
 
 const create = (req, res, next) => {
     let data = req.body;
+    console.log(data)
     const currentUser = req.user;
     let referenceImg = req.file?.path;
+    // console.log()
+    
     if (!referenceImg) {
         let err = new Error("upload reference image");
         return next(err);
@@ -13,7 +16,7 @@ const create = (req, res, next) => {
     data.created= currentUser._id;
     let task = new Task(data);
     task.save().then((data) => {
-        res.status(200).send(data);
+        res.status(200).send({Message:"task saved successfully"});
     }).catch((err) => {
         if (err.code === 11000) {
             // Duplicate key error, handle it here

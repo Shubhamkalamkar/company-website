@@ -10,17 +10,21 @@ const taskRoute = require('express').Router()
 
 const fileStorage = multer.diskStorage({
     destination: (req, file, cb) => {
-        // console.log(file)
+        console.log("here is file", file)
         if (file.fieldname === 'referenceImg' && file.mimetype === 'image/png') {
             cb(null, path.join('assets', 'tasks', 'images'));
         }
     },
     filename: async (req, file, cb) => {
-        console.log(req.body);
-
-        let duplicate = await Task.findOne({_id:req.body._id})
+        console.log("check here body", req.body._id);
+        // console.log(typeof(req.body._id))
+        if (req.body._id == 'null'||req.body._id == 'undefined') {
+            // console.log("first")
+            return cb({ message: ' Id required' })
+        }
+        let duplicate = await Task.findOne({ _id: req.body._id })
         console.log(duplicate)
-        if(duplicate){
+        if (duplicate) {
             return cb({ message: 'duplicate Id' })
         }
 
@@ -41,7 +45,7 @@ const fileFilter = (req, file, cb) => {
 
 
 taskRoute.post('/create', authentication, checkAdminAuth, multer({ storage: fileStorage, fileFilter: fileFilter }).single('referenceImg'), taskController.create)
-taskRoute.post('/assign',authentication, checkAdminAuth,taskController.assign)
-taskRoute.get('/getall',authentication, taskController.getAll)
-taskRoute.get('/getbyid/:id',taskController.getbyid)
+taskRoute.post('/assign', authentication, checkAdminAuth, taskController.assign)
+taskRoute.get('/getall', authentication, taskController.getAll)
+taskRoute.get('/getbyid/:id', taskController.getbyid)
 module.exports = taskRoute
