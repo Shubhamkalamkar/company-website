@@ -42,11 +42,14 @@ export const SignIn = () => {
       }
     }).then((data) => {
       console.log(data)
-      Cookies.set('token', data.token)
+      Cookies.set('token', data.user?.token)
       dispatch({ type: "SET_USER", payload: data.user })
+      const jsonString = JSON.stringify(data.user);
+      localStorage.setItem('user', jsonString);
       alert(data.Message)
       navigate('/dashboard')
     }).catch((err) => {
+      console.log(err)
       alert(`Error ${err}`)
     })
   }

@@ -30,7 +30,9 @@ const login = (req, res, next) => {
                         role: user.role
                     };
                     let token = jwt.sign(tokenPayload, process.env.AUTH_TOKEN_SECRET);
-                    res.status(200).json({ Message: "signIn Successfully", role: user.role, token: token, user:user })
+                    user= user.toObject()
+                    user.token = token
+                    res.status(200).json({ Message: "signIn Successfully", user:user })
                 } else {
                     let error = new Error("Invalid Password");
                     error.status = 404;
