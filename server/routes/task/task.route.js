@@ -42,5 +42,6 @@ const fileFilter = (req, file, cb) => {
 
 taskRoute.post('/create', authentication, checkAdminAuth, multer({ storage: fileStorage, fileFilter: fileFilter }).single('referenceImg'), taskController.create)
 taskRoute.post('/assign',authentication, checkAdminAuth,taskController.assign)
-
+taskRoute.get('/getall',authentication, taskController.getAll)
+taskRoute.get('/getbyid/:id',taskController.getbyid)
 module.exports = taskRoute
