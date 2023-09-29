@@ -48,4 +48,6 @@ taskRoute.post('/create', authentication, checkAdminAuth, multer({ storage: file
 taskRoute.post('/assign', authentication, checkAdminAuth, taskController.assign)
 taskRoute.get('/getall', authentication, taskController.getAll)
 taskRoute.get('/getbyid/:id', taskController.getbyid)
+taskRoute.get('/checktaskassign', taskController.checkTaskAssign)
+
 module.exports = taskRoute

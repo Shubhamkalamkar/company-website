@@ -11,6 +11,15 @@ const taskSchema = mongoose.Schema({
     referenceImg: {
         type: String
     },
+    assigned: [
+        {
+            internId: {
+                type: String,
+                ref: 'User'
+            },
+            // Add other fields related to the task here
+        }
+    ],
     created: {
         type: String
     },
